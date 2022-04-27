@@ -210,6 +210,22 @@ declare module 'binance-api-node' {
     id: string
   }
 
+  export interface FiatDepositHistoryResponse {
+    assetLogRecordList: {
+      [index:number]: {
+        amount: string,
+        createTime: number,
+        orderId: string,
+        orderStatus: string,
+        paymentAccount: string,
+        paymentChannel: string,
+        paymentMethod: string,
+        platformFee: string
+        transactionFee: string,
+      }
+    }
+  }
+
   export type DepositStatus_LT = 0 | 1
 
   export const enum DepositStatus {
@@ -229,6 +245,22 @@ declare module 'binance-api-node' {
       addressTag?: string
       transferType?: number
       confirmTimes?: string
+    }
+  }
+
+  export interface FiatWithdrawHistoryResponse {
+    assetLogRecordList: {
+      [index: number]: {
+        amount: string,
+        createTime: number,
+        orderId: string,
+        orderStatus: string,
+        paymentAccount: string,
+        paymentChannel: string,
+        paymentMethod: string,
+        platformFee: string
+        transactionFee: string,
+      }
     }
   }
 
@@ -543,6 +575,16 @@ declare module 'binance-api-node' {
       endTime?: number
       limit?: number
     }): Promise<AccountSnapshot>
+    fiatWithdrawHistory(options: {
+      fiatCurrency?: string
+      orderId?: string
+      offset?: number
+      paymentChannel?: string
+      paymentMethod?: string
+      startTime?: number
+      endTime?: number
+      recvWindow?: number
+    }): Promise<FiatWithdrawHistoryResponse>
     withdrawHistory(options: {
       coin: string
       status?: number
@@ -551,6 +593,16 @@ declare module 'binance-api-node' {
       offset?: number
       limit?: number
     }): Promise<WithdrawHistoryResponse>
+    fiatDepositHistory(options: {
+      fiatCurrency?: string
+      orderId?: string
+      offset?: number
+      paymentChannel?: string
+      paymentMethod?: string
+      startTime?: number
+      endTime?: number
+      recvWindow?: number
+    }): Promise<FiatDepositHistoryResponse>
     depositHistory(options: {
       coin?: string
       status?: number

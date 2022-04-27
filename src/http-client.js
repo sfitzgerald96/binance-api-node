@@ -363,7 +363,9 @@ export default opts => {
     myTrades: payload => privCall('/api/v3/myTrades', payload),
 
     withdraw: payload => privCall('/sapi/v1/capital/withdraw/apply', payload, 'POST'),
+    fiatWithdrawHistory: payload => privCall('/sapi/v1/fiatpayment/query/withdraw/history', payload, 'GET'),
     withdrawHistory: payload => privCall('/sapi/v1/capital/withdraw/history', payload),
+    fiatDepositHistory: payload => privCall('/sapi/v1/fiatpayment/query/deposit/history', payload, 'GET'),
     depositHistory: payload => privCall('/sapi/v1/capital/deposit/hisrec', payload),
     depositAddress: payload => privCall('/sapi/v1/capital/deposit/address', payload),
     tradeFee: payload => privCall('/sapi/v1/asset/tradeFee', payload),
