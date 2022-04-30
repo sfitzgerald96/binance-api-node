@@ -515,6 +515,8 @@ declare module 'binance-api-node' {
       symbol: string
       limit?: number
       fromId?: number
+      startTime?: number
+      endTime?: number
       useServerTime?: boolean
     }): Promise<MyTrade[]>
     getOrder(options: GetOrderOptions): Promise<QueryOrderResult>
